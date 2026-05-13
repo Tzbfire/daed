@@ -1,11 +1,15 @@
-version: '3'
 services:
   daed:
+    build:
+      context: .
+    image: daed:auto-reload
+    container_name: daed
     privileged: true
     network_mode: host
     pid: host
-    build:
-      context: .
+    restart: always
     volumes:
       - /sys:/sys
-      - /etc/daed:/etc/daed
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /home/liubai/docker/daed:/etc/daed
